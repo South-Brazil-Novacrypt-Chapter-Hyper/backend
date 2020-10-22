@@ -44,4 +44,4 @@ app.use(gitHubAuthenticationRoutes)
 app.use(routes)
 
  
-app.listen(process.env.PORT || 3000, () => console.log('Servidor foi iniciado'))
+app.listen(process.env.PORT || 4000, () => console.log('Servidor foi iniciado'))
