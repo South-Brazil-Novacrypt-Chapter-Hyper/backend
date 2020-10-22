@@ -32,27 +32,30 @@ gitHubAuthenticationRoutes.get('/auth/github', Passport.authenticate('github', {
 
 // Rota callback, depois de ter acessado e informado os dados ao github ele retorna a essa rota aonde aqui se faz a
 // ação de quando for sucesso e quando falhar
-gitHubAuthenticationRoutes.get('/auth/github/callback', Passport.authenticate('github', { failureRedirect: '/login' }),
-  function (req, res) {
-    console.log('chegou aqui')
-    res.redirect('http://localhost:3000/hello');
-  });
+gitHubAuthenticationRoutes.get('/auth/github/callback', Passport.authenticate('github', { failureRedirect: String(process.env.FAIL_LOGIN) }),
+function(req, res) {
+  return res.redirect(String(process.env.SUCCESS_LOGIN))
+});
 
 // rota de logout da aplicação ela destroy a sessao e deleta o cookie do usuário
 gitHubAuthenticationRoutes.get('/logout', (req, res) => {
-  req.logout()
-  res.status(200).clearCookie('session', {
-    path: '/'
-  });
-  req.session?.destroy((err) => {
-    res.redirect('http://localhost:3000/')
+    req.logout()
+    res.status(200).clearCookie('session', {
+        path: '/'
+      });
+    req.session?.destroy((err) => {
+        res.status(200).send()
+    })
   })
-})
-
+  
 // Verificador de rota, ele testa de usuário esta logado na plataforma
 function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
+    if (req.isAuthenticated()) { return next(); }
+    res.status(400).json (
+      {message: "user has not been authenticated",
+          authenticated: false,
+        })
+  }
+
 
 export { ensureAuthenticated, gitHubAuthenticationRoutes }
