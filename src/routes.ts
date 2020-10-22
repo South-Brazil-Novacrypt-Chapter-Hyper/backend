@@ -5,7 +5,10 @@ const routes = Router()
 
 
 routes.get('/user', ensureAuthenticated, (req, res) => {
-    res.json(req.session?.passport)
+    return res.json({
+        authenticated: true,
+        user: req.session?.passport
+    }).send()
 })
 
 

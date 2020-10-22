@@ -18,10 +18,16 @@ import { routes } from './routes'
 import './config/authentication/oauth/GitHub'
 const app = Express();
 
+
 app.use(BodyParser.urlencoded({ extended: true }));
-app.use(Cors())
 app.use(CookieParser())
 app.use(BodyParser.json())
+app.use(Cors({
+    origin: 'http://localhost:3000', // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 200,
+    credentials: true // allow session cookie from browser to pass through
+   }))
 app.use(ExpressSession({
     name: 'session',
     secret: String(process.env.SESSION_SECRET),
@@ -36,5 +42,6 @@ app.use(Passport.initialize())
 app.use(Passport.session())
 app.use(gitHubAuthenticationRoutes)
 app.use(routes)
+
  
 app.listen(process.env.PORT || 3000, () => console.log('Servidor foi iniciado'))
