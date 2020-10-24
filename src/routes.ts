@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { ensureAuthenticated } from './config/authentication/oauth/GitHub'
+import AccountController from './controllers/AccountController'
 const routes = Router()
 
 
@@ -11,7 +12,8 @@ routes.get('/user', ensureAuthenticated, (req, res) => {
     }).send()
 })
 
-
+routes.post('/account', AccountController.create);
+routes.get('/account/login/:email/:password', AccountController.login);
 
 
 export { routes }
