@@ -14,12 +14,16 @@ import { gitHubAuthenticationRoutes } from './config/authentication/oauth/GitHub
 import { routes } from './routes'
 
 
+import './database/connection'
+import errorHandler from './errors/handler'
+
 
 import './config/authentication/oauth/GitHub'
 const app = Express();
 
 
 app.use(BodyParser.urlencoded({ extended: true }));
+app.use(errorHandler)
 app.use(CookieParser())
 app.use(BodyParser.json())
 app.use(Cors({
