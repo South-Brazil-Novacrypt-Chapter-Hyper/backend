@@ -27,7 +27,7 @@ export default class LoginObserver implements IObserver {
       if (account) {
         bcrypt.compare(password, account.password, (err, result) => {
           if (result) {
-            const token = jwt.sign({ account }, 'hiperinitiative');
+            const token = jwt.sign({ account }, 'hyperinitiative');
             return info[1].status(200).json(token);
           }
           return info[1].status(401).json({ msg: 'Incorrect password' });
