@@ -2,6 +2,7 @@ import { IObserver } from "../IObserver";
 import bcrypt from 'bcrypt';
 import Account from "../../model/Account";
 import { getRepository } from "typeorm";
+import jwt from "jsonwebtoken";
 
 export default class LoginObserver implements IObserver {
     observable: IObservable;
@@ -21,7 +22,8 @@ export default class LoginObserver implements IObserver {
             if (account) {
                 bcrypt.compare(password, account.password, function (err, result) {
                     if (result) {
-                        return info[1].status(200).json(account)
+                        const token = jwt.sign({account}, 'hiperinitative')
+                        return info[1].status(200).json(token)
                     } else {
                         return info[1].status(401).json({ msg: "Incorrect password" })
                     }
