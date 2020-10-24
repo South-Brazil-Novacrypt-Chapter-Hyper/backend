@@ -4,5 +4,5 @@ export interface IObserver {
 }
 
 interface IOnFunction {
-    (action: string, ...info: any[]) : void
+    (action: string, ...info: any[]): void
 }
