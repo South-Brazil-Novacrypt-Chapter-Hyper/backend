@@ -1,5 +1,5 @@
-/* eslint import/no-unresolved: [2, { ignore: ['\.ts$'] }] */
-import Account from '../model/Account';
+// @ts-ignore
+import Account from '../model/Account.ts';
 
 export default {
   render(account: Account) {
