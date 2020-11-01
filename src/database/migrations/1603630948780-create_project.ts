@@ -36,20 +36,6 @@ export class createProject1603630948780 implements MigrationInterface {
           type: 'text',
           isNullable: false,
         },
-        {
-          name: 'account_id',
-          type: 'integer',
-        },
-      ],
-      foreignKeys: [
-        {
-          name: 'ProjectAccount',
-          columnNames: ['account_id'],
-          referencedTableName: 'accounts',
-          referencedColumnNames: ['id'],
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-        },
       ],
     }));
   }

@@ -1,5 +1,5 @@
 import {
-  Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn,
+  Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 // @ts-ignore
 import Account from './Account.ts';
@@ -21,9 +21,7 @@ export default class Project {
     @Column()
     scope: string;
 
-    @ManyToMany(() => Account, (account: Account) => account.projects, {
-      cascade: ['insert', 'update'],
-    })
-    @JoinColumn({ name: 'account_id' })
+    @ManyToMany(() => Account)
+    @JoinTable()
     accounts: Account[];
 }
