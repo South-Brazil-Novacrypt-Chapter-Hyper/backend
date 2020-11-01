@@ -26,13 +26,13 @@ BODY:
 
 Ex.: http://localhost:3333/login
 
-Body: 
-{
-  "username": "new-user",
-  "email": "user@gmail.com",
-  "password": "1234",
-  "github": ""
-}
+Body:    
+{   
+  "username": "new-user",   
+  "email": "user@gmail.com",   
+  "password": "1234",   
+  "github": ""   
+}   
 
 ### Projects
 
