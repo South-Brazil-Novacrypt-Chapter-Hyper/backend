@@ -19,7 +19,7 @@ export default class Project {
     description: string;
 
     @Column()
-    scope: string;
+    scope: boolean;
 
     @ManyToMany(() => Account)
     @JoinTable()

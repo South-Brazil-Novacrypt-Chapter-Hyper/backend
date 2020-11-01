@@ -37,8 +37,6 @@ export default {
       accountsList.push(await AccountController.getAccountUsingId(accounts[i]));
     }
 
-    console.log(accountsList);
-
     const data: any = {
       name,
       platform,
