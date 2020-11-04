@@ -53,7 +53,7 @@ Body:
   "platform": "string",
   "description": "string",
   "scope": "string",
-  "account": [Array of ids of the users]
+  "accounts": [Array of user's ID [Int]]
 }
 ```
 
@@ -65,7 +65,7 @@ Body:
   "platform": "Windows",
   "description": "A simple API Rest",
   "scope": "Open Source",
-  "account": [1]
+  "accounts": [1, 2, 3]
 }
 
-OBS: The account[0] is always the project creator
+OBS: The accounts[0] is always the project creator
